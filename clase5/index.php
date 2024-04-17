@@ -1,9 +1,5 @@
 <?php
-require 'conn.php';
-
-$stmt = $pdo->prepare('SELECT * FROM peliculas ORDER BY fecha_estreno DESC');
-$stmt->execute();
-$peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+require __DIR__ . '/consultas/listado-peliculas.php'
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -20,6 +16,23 @@ $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <h1>Películas</h1>
             </div>
         </div>
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="col-md-8">
+                <form id="form" action="index.php" method="GET">
+                    <div class="form-group">
+                        <label for="fecha"></label>
+                        <select name="fecha" id="fecha" class="form-control">
+                            <?php for($i=2012; $i<=2024; $i++): ?>
+                                <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary" form="form" type="submit">Filtrar</button>
+            </div>
+        </div>
         <div class="row m-t3">
             <div class="col-md-12">
                 <table class="table table-striped table-border">
@@ -34,9 +47,11 @@ $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php foreach($peliculas as $pelicula): ?>
                             <tr>
                                 <!-- pelicula.php?id=N -->
-                                <th><?php echo $pelicula['titulo'] ?></th>
-                                <th><?php echo $pelicula['rating'] ?></th>
-                                <th><?php echo $pelicula['fecha_estreno'] ?></th>
+                                <th>
+                                    <a href="pelicula.php?id=<?php echo $pelicula->id; ?>"><?php echo $pelicula->titulo ?></a>
+                                </th>
+                                <th><?php echo $pelicula->rating ?></th>
+                                <th><?php echo $pelicula->estreno ?></th>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
