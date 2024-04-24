@@ -2,6 +2,8 @@
 
 require __DIR__ . '/../conn.php';
 
+// Lógica
+
 // Preparo el stament
 $stmt = $pdo->prepare('SELECT * FROM peliculas');
 

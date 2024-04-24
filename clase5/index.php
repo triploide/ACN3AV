@@ -1,5 +1,6 @@
 <?php
-require __DIR__ . '/consultas/listado-peliculas.php'
+require __DIR__ . '/consultas/listado-peliculas.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
