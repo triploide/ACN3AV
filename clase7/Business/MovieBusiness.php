@@ -20,6 +20,9 @@ class MovieBusiness
 
     public function find($id)
     {
+        // validación
+        // autenticación
+        // modificación
         return $this->dao->find($id);
     }
 
