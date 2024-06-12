@@ -32,11 +32,20 @@ class MovieDao extends Dao
         return $stmt->fetch();
     }
 
-    public function all()
+    public function all(?array $where=[])
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM movies where owner_id = :id ');
+        $sql = "SELECT * FROM movies";
+        $params = [];
+
+        if (count($where) > 0) {
+            $sql .= " WHERE {$where['columna']} {$where['operador']} :{$where['columna']}";
+            $params = [":{$where['columna']}" => $where['valor']];
+        }
+
+        $stmt = $this->pdo->prepare($sql);
         $stmt->setFetchMode(\PDO::FETCH_CLASS, MovieModel::class);
-        $stmt->execute([':id' => $_SESSION['user_id']]);
+        $stmt->execute($params);
+
         return $stmt->fetchAll();
     }
 

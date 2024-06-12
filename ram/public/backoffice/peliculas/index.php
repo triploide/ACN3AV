@@ -8,7 +8,11 @@ use Ram\Business\MovieBusiness;
 $user = AuthBusiness::verify();
 
 $movieBusiness = new MovieBusiness;
-$movies = $movieBusiness->all();
+$movies = $movieBusiness->all([
+    'columna' => 'owner_id',
+    'operador' => '=',
+    'valor' => $_SESSION['user_id']
+]);
 ?>
 <!DOCTYPE html>
 <html lang="es">

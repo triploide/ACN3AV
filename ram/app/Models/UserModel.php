@@ -53,6 +53,11 @@ class UserModel
         return $this->last_name;
     }
 
+    public function getFullName()
+    {
+        return $this->getFirstName() . ' ' . $this->getLastName();
+    }
+
     public function setLastName($value)
     {
         $this->last_name = $value;

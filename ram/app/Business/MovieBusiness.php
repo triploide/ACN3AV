@@ -41,9 +41,9 @@ class MovieBusiness extends Business
         return $movie;
     }
 
-    public function all()
+    public function all(?array $where=[])
     {
-        $movies = $this->dao->all();
+        $movies = $this->dao->all($where);
 
         if ($movies === false) {
             var_dump('Todo mal'); exit;
