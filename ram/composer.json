@@ -5,6 +5,7 @@
         }
     },
     "require": {
-        "intervention/image": "^3.6"
+        "intervention/image": "^3.6",
+        "nesbot/carbon": "^3.5"
     }
 }

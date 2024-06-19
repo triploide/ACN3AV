@@ -10667,6 +10667,14 @@ footer {
   padding-bottom: 3rem;
 }
 
+.footer {
+  background-color: #dd5c5b !important;
+}
+
+.footer .text-muted {
+  color: #FFF !important
+}
+
 header.masthead {
   position: relative;
   margin-bottom: 3rem;

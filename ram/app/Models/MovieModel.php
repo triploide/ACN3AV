@@ -2,6 +2,7 @@
 
 namespace Ram\Models;
 
+use Carbon\Carbon;
 use Ram\Config\DBConfig;
 use Ram\DataAccess\ImageDao;
 use Ram\DataAccess\UserDao;
@@ -46,6 +47,11 @@ class MovieModel
         $date = \DateTime::createFromFormat('Y-m-d', $this->released_date);
 
         return $date->format('F jS, Y');
+    }
+
+    public function since()
+    {
+        return Carbon::createFromFormat('Y-m-d', $this->released_date)->since();
     }
 
     public function getReleased_date()

@@ -45,7 +45,7 @@ $movies = $movieBusiness->all();
                             <p class="post-meta">
                                 Posted by
                                 <a href="#!"><?php echo $movie->getOwner()->getFullName() ; ?></a>
-                                on <?php echo $movie->getHumanDate(); ?>
+                                on <?php echo $movie->since(); ?>
                             </p>
                         </div>
                         <!-- Divider-->
