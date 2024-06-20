@@ -16,6 +16,7 @@ class UserDao extends Dao
         return [
             'first_name',
             'last_name',
+            'password',
             'role_id',
         ];
     }

@@ -10,14 +10,14 @@ abstract class Business
 
     protected function error404()
     {
-        echo file_get_contents(__DIR__ . '/../../public/backoffice/404.php');
+        echo file_get_contents(__DIR__ . '/../../public/backoffice/errors/404.php');
 
         exit;
     }
 
     protected function error403()
     {
-        echo file_get_contents(__DIR__ . '/../../public/backoffice/403.php');
+        echo file_get_contents(__DIR__ . '/../../public/backoffice/errors/403.php');
 
         exit;
     }

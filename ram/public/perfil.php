@@ -1,11 +1,10 @@
 <?php
 
+use Ram\Business\AuthBusiness;
+
 require '../vendor/autoload.php';
 
-use Ram\Business\MovieBusiness;
-
-$movieBusiness = new MovieBusiness;
-$movies = $movieBusiness->all();
+$user = AuthBusiness::verify();
 
 ?>
 
@@ -13,11 +12,18 @@ $movies = $movieBusiness->all();
 <html lang="es">
     <head>
         <?php include __DIR__ . '/partials/head.php' ?>
-        <title>Clean Blog - Start Bootstrap Theme</title>
+        <title>Perfil | RAM</title>
         <meta name="description" content="" />
     </head>
     <body>
         <?php include __DIR__ . '/partials/nav.php' ?>
+
+        <?php if(isset($_SESSION['message'])): ?>
+            <div class="alert alert-info">
+                <p><?php echo $_SESSION['message']; ?></p>
+            </div>
+            <?php unset($_SESSION['message']); ?>
+        <?php endif; ?>
 
         <!-- Page Header-->
         <header class="masthead" style="background-image: url('/assets/img/living.jpg')">
@@ -32,26 +38,12 @@ $movies = $movieBusiness->all();
                 </div>
             </div>
         </header>
+
         <!-- Main Content-->
-        <div class="container px-4 px-lg-5">
+        <div class="container px-4 px-lg-5" style="min-height: 80vh;">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                    <?php foreach ($movies as $movie): ?>
-                        <!-- Post preview-->
-                        <div class="post-preview">
-                            <a href="pelicula.php?id=<?php echo $movie->getId(); ?>">
-                                <h2 class="post-title"><?php echo $movie->getTitle() ; ?></h2>
-                                <h3 class="post-subtitle"><?php echo $movie->getSubtitle() ; ?></h3>
-                            </a>
-                            <p class="post-meta">
-                                Posted by
-                                <a href="#!"><?php echo $movie->getOwner()->getFullName() ; ?></a>
-                                on <?php echo $movie->since(); ?>
-                            </p>
-                        </div>
-                        <!-- Divider-->
-                        <hr class="my-4" />
-                    <?php endforeach; ?>
+                    <h1><?php echo $user->getFullName(); ?></h1>
                 </div>
             </div>
         </div>
